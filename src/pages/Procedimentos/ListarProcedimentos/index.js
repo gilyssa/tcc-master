@@ -1,7 +1,5 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
-import { Form } from "react-bootstrap";
-import { useState } from "react";
 import TableScrollbar from "react-table-scrollbar";
 import * as C from "./styles";
 
@@ -27,7 +25,7 @@ class ListarProcedimentos extends React.Component {
         usuario_id: JSON.parse(localStorage.getItem("signin")).signin.usuario,
       },
     };
-    fetch("https://web-production-ce70.up.railway.app/api/procedimentos?", options)
+    fetch("https://bff-beauty-with-aesthetic.onrender.com/api/procedimentos?", options)
       .then((response) => response.json())
       .then((dados) => {
         console.log(dados);

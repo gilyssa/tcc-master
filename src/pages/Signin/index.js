@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import * as C from "./styles";
 
 import logo1 from "../../img/logo1.png";
 
@@ -29,7 +29,7 @@ const Signin = () => {
     };
 
     return fetch(
-      "https://web-production-ce70.up.railway.app/api/usuarios/login",
+      "https://bff-beauty-with-aesthetic.onrender.com/api/usuarios/login",
       options
     )
       .then((response) => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Input from "../../../components/Input";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
+import Input from "../../../components/Input";
 import * as C from "./styles";
-import {  useNavigate } from "react-router-dom";
 
 import logo1 from "../../../img/logo1.png";
 
@@ -38,7 +38,7 @@ const CadastrarProcedimentos = () => {
       };
   
       return fetch(
-        'https://web-production-ce70.up.railway.app/api/procedimentos',
+        'https://bff-beauty-with-aesthetic.onrender.com/api/procedimentos',
         options,
       )  
         .then((response) => {

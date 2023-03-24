@@ -1,8 +1,7 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import * as C from "./styles";
 import TableScrollbar from "react-table-scrollbar";
+import * as C from "./styles";
 
 class PesquisarCliente extends React.Component {
   constructor(props) {
@@ -26,7 +25,7 @@ class PesquisarCliente extends React.Component {
       },
     };
 
-    fetch("https://web-production-ce70.up.railway.app/api/clientes?", options)
+    fetch("https://bff-beauty-with-aesthetic.onrender.com/api/clientes?", options)
       .then((response) => response.json())
       .then((dados) => {
         this.setState({ clientes: dados });

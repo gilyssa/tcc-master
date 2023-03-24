@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import * as C from "./styles";
 
 import logo1 from "../../img/logo1.png";
 
@@ -22,7 +22,7 @@ const Signup = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    await fetch("https://web-production-ce70.up.railway.app/usuarios", {
+    await fetch("https://bff-beauty-with-aesthetic.onrender.com/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

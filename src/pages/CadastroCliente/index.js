@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import * as C from "./styles";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import * as C from "./styles";
 
 import logo1 from "../../img/logo1.png";
-import { Alert } from "bootstrap";
 
 const CadastroCliente = () => {
   const [nome, setNome] = useState(""); //ok
@@ -49,7 +48,7 @@ const CadastroCliente = () => {
     };
 
     return fetch(
-      "https://web-production-ce70.up.railway.app/api/clientes",
+      "https://bff-beauty-with-aesthetic.onrender.com/api/clientes",
       options
     ).then((response) => {
       if (response.status === 200) {
