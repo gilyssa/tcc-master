@@ -24,7 +24,7 @@ const Signup = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    await fetch("https://bff-beauty-with-aesthetic.onrender.com/usuarios", {
+    await fetch("https://bff-beauty-with-aesthetic.onrender.com/api/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,6 +38,8 @@ const Signup = () => {
       } else {
         alert("Erro ao criar Usuário!");
       }
+    }).catch((error) =>{
+      console.log(error);
     });
     navigate("/");
   }
