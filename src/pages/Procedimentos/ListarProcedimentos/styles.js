@@ -6,7 +6,6 @@ export const Tabela = styled.div`
     padding: 30px;
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-color: blue orange;
     white-space: nowrap;
 
   td {
