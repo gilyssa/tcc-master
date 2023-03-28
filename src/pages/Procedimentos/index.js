@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
-import useAuth from "../../hooks/useAuth";
-import Logotipo from "../../components/Logotipo";
+import Vertical from "../../components/Logotipo/vertical";
 
-import * as C from "./styles";
+import useAuth from "../../hooks/useAuth";
+
 
 const Procedimentos = () => {
   const { signout } = useAuth();
@@ -12,7 +12,7 @@ const Procedimentos = () => {
 
   return (
         <>
-            <Logotipo></Logotipo>
+            <Vertical/>
             <Button Text="Adicionar Procedimento" onClick={() => [navigate("/cadastrarProcedimentos")]}>
          
             </Button>

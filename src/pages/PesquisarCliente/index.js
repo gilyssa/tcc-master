@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
-import TableScrollbar from "react-table-scrollbar";
-import Logotipo from "../../components/Logotipo";
+import Vertical from "../../components/Logotipo/horizontal";
 
 import * as C from "./styles";
 
@@ -59,39 +58,39 @@ class PesquisarCliente extends React.Component {
 
   render() {
     return (
-        <>
-          <Logotipo></Logotipo>
-          <C.Tabela>
-            <TableScrollbar rows={6}>
-              <Table striped bordered hover>
-                <tbody>
-                  <tr>
-                   <td><strong>Clientes Adicionados</strong></td>
-                  </tr>
-                  {this.state.clientes.map((cliente) => (
-                    <tr>
-                      <td>{cliente.email}</td>
-                      <td>
-                        <Button
-                          variant="warning"
-                          onClick={() => this.deletarClientes(cliente.id)}
-                        >
-                          Alterar
-                        </Button>
-                        <Button
-                          variant="danger"
-                          onClick={() => this.deletarClientes(cliente.id)}
-                        >
-                          Ficha Avaliativa
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </TableScrollbar>
-          </C.Tabela>
-        </>
+      <>
+        <Vertical/>
+        <C.Tabela>
+          <Table striped bordered hover>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Clientes Adicionados</strong>
+                </td>
+              </tr>
+              {this.state.clientes.map((cliente) => (
+                <tr>
+                  <td class="ordenacao" title={cliente.email}>
+                    {cliente.email}
+                    <Button
+                      variant="warning"
+                      onClick={() => this.deletarClientes(cliente.id)}
+                    >
+                      Alterar
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => this.deletarClientes(cliente.id)}
+                    >
+                      Ficha Avaliativa
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </C.Tabela>
+      </>
     );
   }
 }

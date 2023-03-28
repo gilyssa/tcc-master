@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import Logotipo from "../../components/Logotipo";
+import Vertical from "../../components/Logotipo/vertical";
+
 
 import * as C from "./styles";
 
@@ -39,7 +40,7 @@ const RecuperarSenha = () => {
 
   return (
       <>
-        <Logotipo></Logotipo>
+        <Vertical/>
         <label>Digite o email para recuperação</label>
         <Input
           type="email"

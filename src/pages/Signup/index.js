@@ -4,7 +4,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
 
-import Logotipo from "../../components/Logotipo";
+import Vertical from "../../components/Logotipo/vertical";
+
 
 
 const Signup = () => {
@@ -43,7 +44,7 @@ const Signup = () => {
 
   return (
       <>
-        <Logotipo></Logotipo>
+        <Vertical/>
         <Input
           type="name"
           placeholder="Digite seu nome"

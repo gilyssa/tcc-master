@@ -26,3 +26,5 @@ export const Content = styled.div`
   max-height: 600px;
   border-radius: 30px;
 `;
+
+

@@ -1,19 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
+import Vertical from "../../components/Logotipo/vertical";
+
 import useAuth from "../../hooks/useAuth";
-import Logotipo from "../../components/Logotipo";
 
 
-import * as C from "./styles";
-import logo1 from "../../img/logo1.png"
 const Clientes = () => {
   const { signout } = useAuth();
   const navigate = useNavigate();
 
   return (
     <>
-    <Logotipo></Logotipo>
+    <Vertical/>
     <Button Text="Cadastrar Cliente" onClick={() => [navigate("/cadastroCliente")]}>
         CadastrarCliente 
       </Button>

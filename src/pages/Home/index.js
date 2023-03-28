@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
+import Vertical from "../../components/Logotipo/vertical";
+
 import useAuth from "../../hooks/useAuth";
-import Logotipo from "../../components/Logotipo";
 
 const Home = () => {
   const { signout } = useAuth();
@@ -10,7 +11,7 @@ const Home = () => {
 
   return (
     <>
-    <Logotipo></Logotipo>
+    <Vertical/>
     <Button Text="Clientes" onClick={() => [navigate("/clientes")]}>
         CadastrarCliente 
       </Button>

@@ -4,7 +4,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
 
-import Logotipo from "../../components/Logotipo";
+import Vertical from "../../components/Logotipo/vertical";
+
 
 
 const Signin = () => {
@@ -51,7 +52,7 @@ const Signin = () => {
 
   return (
       <>
-        <Logotipo></Logotipo>
+        <Vertical/>
 
         <Input
           type="email"

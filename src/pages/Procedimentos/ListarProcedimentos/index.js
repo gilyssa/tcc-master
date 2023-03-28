@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
-import TableScrollbar from "react-table-scrollbar";
-import Logotipo from "../../../components/Logotipo";
+import Vertical from "../../../components/Logotipo/vertical";
 
 import * as C from "./styles";
 
@@ -70,26 +69,25 @@ class ListarProcedimentos extends React.Component {
   };
   render() {
     return (
-        <>
-            <Logotipo></Logotipo>
-            <C.Tabela>
-                <Table striped bordered hover class="table-dark">
-                  <tbody>
-                    <tr>
-                      <td>NOME</td>
-                      <td>ATUALIZAR</td>
-                    </tr>
-                    {this.state.procedimentos.map((procedimentos) => (
-                      <tr>
-                        <td>{procedimentos.nome}</td>
-                        <td>
-                          <Button>Atualizar</Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-            </C.Tabela>
+      <>
+        <Vertical/>
+        <C.Tabela>
+          <Table striped bordered hover class="table-dark">
+            <tbody>
+              <tr>
+                <td>Procedimentos</td>
+              </tr>
+              {this.state.procedimentos.map((procedimentos) => (
+                <tr>
+                  <td class="ordenacao" title={procedimentos.nome}>
+                    {procedimentos.nome}
+                    <Button>Atualizar</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </C.Tabela>
       </>
     );
   }
