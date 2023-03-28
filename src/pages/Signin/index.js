@@ -4,7 +4,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
 
-import logo1 from "../../img/logo1.png";
+import Logotipo from "../../components/Logotipo";
+
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -49,9 +50,8 @@ const Signin = () => {
   }
 
   return (
-    <C.Container>
-      <C.Content>
-        <img src={logo1} />
+      <>
+        <Logotipo></Logotipo>
 
         <Input
           type="email"
@@ -76,8 +76,7 @@ const Signin = () => {
         <C.Strong>
           <Link to="/recuperarSenha">&nbsp;Esqueceu sua senha?</Link>
         </C.Strong>
-      </C.Content>
-    </C.Container>
+      </>
   );
 };
 

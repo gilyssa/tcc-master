@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import Logotipo from "../../components/Logotipo";
 import * as C from "./styles";
 
 const AlterarSenha = () => {
@@ -39,8 +40,8 @@ const AlterarSenha = () => {
   }
 
   return (
-    <C.Container>
-      <C.Content>
+     <>
+         <Logotipo></Logotipo>
         <label>Digite os dados para a recuperar sua senha.</label>
         <Input
           type="number"
@@ -56,8 +57,7 @@ const AlterarSenha = () => {
         />
         <C.labelError>{error}</C.labelError>
         <Button Text="Enviar" onClick={TrocarSenha} />
-      </C.Content>
-    </C.Container>
+      </>
   );
 };
 

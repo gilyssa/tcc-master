@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+
 import * as C from "./styles";
 
-import logo1 from "../../img/logo1.png";
 
 const CadastroCliente = () => {
   const [nome, setNome] = useState(""); //ok
@@ -62,42 +62,40 @@ const CadastroCliente = () => {
   }
 
   return (
-    <C.Container>
-      <C.Content>
-        <img src={logo1} />
+      <>
         <Input
           type="name"
-          placeholder="Digite seu nome"
+          placeholder="Nome"
           value={nome}
           onChange={(e) => [setNome(e.target.value), setError("")]}
         />
         <Input
           type="text"
-          placeholder="Digite seu CPF "
+          placeholder="CPF "
           value={cpf}
           onChange={(e) => [setCpf(e.target.value), setError("")]}
         />
         <Input
           type="text"
-          placeholder="Digite seu tipo sanguineo"
+          placeholder="Tipo sanguíneo"
           value={tipo_sanguineo}
           onChange={(e) => [setTipo_sanguineo(e.target.value), setError("")]}
         />
         <Input
           type="text"
-          placeholder="Digite sua Data de aniversário"
+          placeholder="Aniversário"
           value={data_nascimento}
           onChange={(e) => [setData_nascimento(e.target.value), setError("")]}
         />
         <Input
           type="text"
-          placeholder="Digite seu telefone "
+          placeholder="Telefone "
           value={telefone}
           onChange={(e) => [setTelefone(e.target.value), setError("")]}
         />
         <Input
           type="email"
-          placeholder="Digite seu E-mail"
+          placeholder="E-mail"
           value={email}
           onChange={(e) => [setEmail(e.target.value), setError("")]}
         />
@@ -110,8 +108,7 @@ const CadastroCliente = () => {
 
         <C.labelError>{error}</C.labelError>
         <Button Text="Cadastrar Cliente" onClick={handleSubmit} />
-      </C.Content>
-    </C.Container>
+      </>
   );
 };
 

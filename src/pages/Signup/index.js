@@ -4,7 +4,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
 
-import logo1 from "../../img/logo1.png";
+import Logotipo from "../../components/Logotipo";
+
 
 const Signup = () => {
   const [nome, setNome] = useState("");
@@ -41,9 +42,8 @@ const Signup = () => {
   }
 
   return (
-    <C.Container>
-      <C.Content>
-        <img src={logo1} />
+      <>
+        <Logotipo></Logotipo>
         <Input
           type="name"
           placeholder="Digite seu nome"
@@ -72,8 +72,7 @@ const Signup = () => {
             <Link to="/">&nbsp;Entre</Link>
           </C.Strong>
         </C.LabelSignin>
-      </C.Content>
-    </C.Container>
+      </>
   );
 };
 

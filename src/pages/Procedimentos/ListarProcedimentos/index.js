@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 import TableScrollbar from "react-table-scrollbar";
+import Logotipo from "../../../components/Logotipo";
+
 import * as C from "./styles";
 
 class ListarProcedimentos extends React.Component {
@@ -68,15 +70,9 @@ class ListarProcedimentos extends React.Component {
   };
   render() {
     return (
-      <div>
-        <C.Container>
-          <C.Gabriel>
-            <label>teste</label>
-            <label>teste</label>
-          </C.Gabriel>
-          <C.Content>
+        <>
+            <Logotipo></Logotipo>
             <C.Tabela>
-              <TableScrollbar rows={10}>
                 <Table striped bordered hover class="table-dark">
                   <tbody>
                     <tr>
@@ -93,11 +89,8 @@ class ListarProcedimentos extends React.Component {
                     ))}
                   </tbody>
                 </Table>
-              </TableScrollbar>
             </C.Tabela>
-          </C.Content>
-        </C.Container>
-      </div>
+      </>
     );
   }
 }

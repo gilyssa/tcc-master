@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import Logotipo from "../../../components/Logotipo";
+
 import * as C from "./styles";
-
-import logo1 from "../../../img/logo1.png";
-
-
 
 const CadastrarProcedimentos = () => {
     const [nome, setNome] = useState(""); 
@@ -50,10 +48,8 @@ const CadastrarProcedimentos = () => {
     };
   
     return (
-      <C.Container>
-        
-        <C.Content>
-        <img  src={logo1 }/>  
+        <>
+        <Logotipo></Logotipo>
         <Input
             type="text"
             placeholder="Digite o nome do novo Procedimento"
@@ -63,8 +59,7 @@ const CadastrarProcedimentos = () => {
           <C.labelError>{error}</C.labelError>
           <Button Text="Cadastrar Cliente" onClick={handleSubmit} />
 
-        </C.Content>
-      </C.Container>
+        </>
     );
   };
   

@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 import TableScrollbar from "react-table-scrollbar";
+import Logotipo from "../../components/Logotipo";
+
 import * as C from "./styles";
 
 class PesquisarCliente extends React.Component {
@@ -57,24 +59,17 @@ class PesquisarCliente extends React.Component {
 
   render() {
     return (
-      <C.Container>
-        <C.Gabriel>
-          <label>teste</label>
-          <label>teste</label>
-        </C.Gabriel>
-        <C.Content>
+        <>
+          <Logotipo></Logotipo>
           <C.Tabela>
-            <TableScrollbar rows={10}>
+            <TableScrollbar rows={6}>
               <Table striped bordered hover>
                 <tbody>
                   <tr>
-                    <td>NOME</td>
-                    <td>EMAIL</td>
-                    <td>ALTERAR</td>
+                   <td><strong>Clientes Adicionados</strong></td>
                   </tr>
                   {this.state.clientes.map((cliente) => (
                     <tr>
-                      <td>{cliente.nome}</td>
                       <td>{cliente.email}</td>
                       <td>
                         <Button
@@ -96,8 +91,7 @@ class PesquisarCliente extends React.Component {
               </Table>
             </TableScrollbar>
           </C.Tabela>
-        </C.Content>
-      </C.Container>
+        </>
     );
   }
 }

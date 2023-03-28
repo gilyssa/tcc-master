@@ -10,8 +10,6 @@ import Clientes from "../pages/Clientes";
 import Procedimentos from "../pages/Procedimentos";
 import CadastrarProcedimentos from "../pages/Procedimentos/CadastrarProcedimentos";
 import ListarProcedimentos from "../pages/Procedimentos/ListarProcedimentos";
-import { Teste } from "../pages/TESTE";
-import TesteNovo from "../pages/TesteNovo";
 import AlterarSenha from "../pages/AlterarSenha";
 import FichaAvaliativa from "../pages/FichaAvaliativa";
 import RecuperarSenha from "../pages/RecuperarSenha";
@@ -32,13 +30,11 @@ const RoutesApp = () => {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/home" element={<Home/>} />
           <Route exact path="/clientes" element={<Clientes/>} /> 
-          <Route exact path="/teste" element={<Teste/>} /> 
           <Route exact path="/cadastroCliente" element={< CadastroCliente />} />
           <Route exact path="/pesquisarCliente" element={<PesquisarCliente/>} />
           <Route exact path="/procedimentos" element={<Procedimentos/>} />
           <Route exact path="/cadastrarProcedimentos" element={<CadastrarProcedimentos/>} />
           <Route exact path="/listarProcedimentos" element={<ListarProcedimentos/>} />
-          <Route exact path="/testeNovo" element={<TesteNovo/>} />
           <Route exact path="/recuperarSenha" element={<RecuperarSenha/>} />
           <Route exact path="/alterarSenha" element={<AlterarSenha/>} />
           <Route exact path="/fichaAvaliativa" element={<FichaAvaliativa/>} />

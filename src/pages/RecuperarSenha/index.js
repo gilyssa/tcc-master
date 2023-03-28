@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import Logotipo from "../../components/Logotipo";
+
 import * as C from "./styles";
 
 const RecuperarSenha = () => {
@@ -36,8 +38,8 @@ const RecuperarSenha = () => {
   }
 
   return (
-    <C.Container>
-      <C.Content>
+      <>
+        <Logotipo></Logotipo>
         <label>Digite o email para recuperação</label>
         <Input
           type="email"
@@ -48,8 +50,7 @@ const RecuperarSenha = () => {
 
         <C.labelError>{error}</C.labelError>
         <Button Text="Enviar" onClick={enviarEmail} />
-      </C.Content>
-    </C.Container>
+      </>
   );
 };
 
