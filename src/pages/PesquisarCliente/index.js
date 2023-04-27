@@ -1,23 +1,19 @@
-import React from "react";
-import { Button, Table } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Table, Form } from "react-bootstrap";
 import Vertical from "../../components/Logotipo/horizontal";
 
 import * as C from "./styles";
 
-class PesquisarCliente extends React.Component {
-  constructor(props) {
-    super(props);
+const PesquisarCliente = () => {
+  const [clientesOriginais, setClientesOriginais] = useState([]);
+  const [clientes, setClientes] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
-    this.state = {
-      clientes: [],
-    };
-  }
-  componentDidMount() {
-    this.buscarClientes();
-  }
-  componentWillUnmount() {}
+  useEffect(() => {
+    buscarClientes();
+  }, []);
 
-  buscarClientes = () => {
+  const buscarClientes = () => {
     const options = {
       method: "GET",
       headers: {
@@ -26,72 +22,86 @@ class PesquisarCliente extends React.Component {
       },
     };
 
-    fetch("https://bff-beauty-with-aesthetic.onrender.com/api/clientes?", options)
+    fetch(
+      "https://bff-beauty-with-aesthetic.onrender.com/api/clientes?",
+      options
+    )
       .then((response) => response.json())
       .then((dados) => {
-        this.setState({ clientes: dados });
+        setClientesOriginais(dados);
+        setClientes(dados);
       });
   };
 
-  // buscarClientes = () => {
-  //   const id = JSON.parse(localStorage.getItem("signin")).signin.usuario;
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       token: JSON.parse(localStorage.getItem("signin")).signin.token,
-  //     },
-  //   };
+  const deletarClientes = (id) => {
+    // implemente a lógica para deletar o cliente com o ID fornecido
+  };
 
-  //   fetch(
-  //     "https://react-api-bff.herokuapp.com/api/clientes/usuario/" + id,
-  //     options
-  //   )
-  //     .then((response) => response.json())
-  //     .then((dados) => {
-  //       console.log(options);
-  //       console.log(JSON.parse(localStorage.getItem("signin")).signin.usuario);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const filteredClientes = clientesOriginais.filter(
+      (cliente) => cliente.email === searchValue
+    );
+    setClientes(filteredClientes);
+  };
 
-  //       this.setState({ clientes: dados });
-  //     });
-  // };
+  const cancelarBusca = () => {
+    setSearchValue("");
+    setClientes(clientesOriginais);
+  };
 
-  render() {
-    return (
-      <>
-        <Vertical/>
-        <C.Tabela>
-          <Table striped bordered hover>
-            <tbody>
+  return (
+    <>
+      <Vertical />
+      <C.Tabela>
+        <Form onSubmit={handleSearch}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Control
+              type="email"
+              placeholder="Digite o email do cliente"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Pesquisar
+          </Button>
+          <Button variant="secondary" onClick={cancelarBusca}>
+            Cancelar
+          </Button>
+        </Form>
+        <Table striped bordered hover>
+          <br></br>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Clientes Adicionados</strong>
+              </td>
+            </tr>
+            {clientes.map((cliente) => (
               <tr>
-                <td>
-                  <strong>Clientes Adicionados</strong>
+                <td class="ordenacao" title={cliente.email}>
+                  {cliente.email}
+                  <Button
+                    variant="warning"
+                    onClick={() => deletarClientes(cliente.id)}
+                  >
+                    Alterar
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => deletarClientes(cliente.id)}
+                  >
+                    Ficha Avaliativa
+                  </Button>
                 </td>
               </tr>
-              {this.state.clientes.map((cliente) => (
-                <tr>
-                  <td class="ordenacao" title={cliente.email}>
-                    {cliente.email}
-                    <Button
-                      variant="warning"
-                      onClick={() => this.deletarClientes(cliente.id)}
-                    >
-                      Alterar
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => this.deletarClientes(cliente.id)}
-                    >
-                      Ficha Avaliativa
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </C.Tabela>
-      </>
-    );
-  }
-}
+            ))}
+          </tbody>
+        </Table>
+      </C.Tabela>
+    </>
+  );
+};
+
 export default PesquisarCliente;

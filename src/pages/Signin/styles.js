@@ -48,4 +48,9 @@ export const Strong = styled.strong`
     color: #000;
   }
 `;
-
+export const Warning = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`;

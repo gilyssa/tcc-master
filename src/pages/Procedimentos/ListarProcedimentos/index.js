@@ -1,23 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import Vertical from "../../../components/Logotipo/vertical";
-
 import * as C from "./styles";
 
-class ListarProcedimentos extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      procedimentos: [],
-      nome: "gabr",
-    };
-  }
-  componentDidMount() {
-    this.ListarProcedimentos();
-  }
-  componentWillUnmount() {}
-  ListarProcedimentos = () => {
+const ListarProcedimentos = () => {
+  const [procedimentos, setProcedimentos] = useState([]);
+  const [nomeBusca, setNomeBusca] = useState("");
+  useEffect(() => {
+    listarProcedimentos();
+  }, []);
+  const listarProcedimentos = () => {
     const options = {
       method: "GET",
       headers: {
@@ -26,14 +18,18 @@ class ListarProcedimentos extends React.Component {
         usuario_id: JSON.parse(localStorage.getItem("signin")).signin.usuario,
       },
     };
-    fetch("https://bff-beauty-with-aesthetic.onrender.com/api/procedimentos?", options)
+    fetch(
+      "https://bff-beauty-with-aesthetic.onrender.com/api/procedimentos?",
+      options
+    )
       .then((response) => response.json())
       .then((dados) => {
         console.log(dados);
-        this.setState({ procedimentos: dados });
+        setProcedimentos(dados);
       });
   };
-  carregarProcedimento = (id) => {
+
+  const carregarProcedimento = (id) => {
     const options = {
       method: "GET",
       headers: {
@@ -48,49 +44,53 @@ class ListarProcedimentos extends React.Component {
     )
       .then((response) => response.json())
       .then((procedimentos) => {
-        this.setState({
-          id: procedimentos.id,
-          nome: procedimentos.nome,
-        });
+        setNomeBusca(procedimentos.nome);
       });
   };
 
-  atualizaNome = (e) => {
-    this.setState({
-      nome: e.target.value,
-    });
+  const atualizarNomeBusca = (e) => {
+    setNomeBusca(e.target.value);
   };
-  submit = () => {
-    {
-      const procedimento = {
-        nome: this.state.nome,
-      };
-    }
-  };
-  render() {
-    return (
-      <>
-        <Vertical/>
-        <C.Tabela>
-          <Table striped bordered hover class="table-dark">
-            <tbody>
-              <tr>
-                <td>Procedimentos</td>
-              </tr>
-              {this.state.procedimentos.map((procedimentos) => (
-                <tr>
-                  <td class="ordenacao" title={procedimentos.nome}>
-                    {procedimentos.nome}
-                    <Button>Atualizar</Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </C.Tabela>
-      </>
+
+  const filtrarProcedimentos = () => {
+    return procedimentos.filter((procedimento) =>
+      procedimento.nome.toLowerCase().includes(nomeBusca.toLowerCase())
     );
-  }
-}
+  };
+
+  const submit = () => {
+    // ...
+  };
+
+  return (
+    <>
+      <Vertical />
+      <C.Tabela>
+        <label>Digite o nome do Procedimento</label>
+        <br></br>
+        <input type="text" value={nomeBusca} onChange={atualizarNomeBusca} />
+        <br></br>
+        <br></br>
+        <Table striped bordered hover class="table-dark">
+          <tbody>
+            <tr>
+              <td>Procedimentos</td>
+            </tr>
+            {filtrarProcedimentos().map((procedimento) => (
+              <tr key={procedimento.id}>
+                <td class="ordenacao" title={procedimento.nome}>
+                  {procedimento.nome}
+                  <Button onClick={() => carregarProcedimento(procedimento.id)}>
+                    Atualizar
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </C.Tabela>
+    </>
+  );
+};
 
 export default ListarProcedimentos;
