@@ -68,8 +68,9 @@ const AlterarSenha = () => {
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
-        <Button Text="Inscrever-se" onClick={TrocarSenha} />
+        <Button Text="Alterar Senha" onClick={TrocarSenha} />
       )}
+      <Button Text="Voltar" onClick={() => [navigate("/recuperarSenha")]} />
     </>
   );
 };

@@ -62,6 +62,7 @@ const RecuperarSenha = () => {
       ) : (
         <Button Text="Entrar" onClick={enviarEmail} />
       )}
+      <Button Text="Voltar" onClick={() => [navigate("/")]} />
     </>
   );
 };
