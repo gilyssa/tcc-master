@@ -13,3 +13,4 @@ npm install sass
 npm install --save react-table-scrollbar
 Set-ExecutionPolicy -ExecutionPolicy Bypass (rodar script do back (Erro de permisao))
 npm install @mui/material @emotion/react @emotion/styled
+npm install semantic-ui-react semantic-ui-css (teste)

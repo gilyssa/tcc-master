@@ -76,6 +76,7 @@ const CadastroCliente = () => {
         value={cpf}
         onChange={(e) => [setCpf(e.target.value), setError("")]}
       />
+
       <Input
         type="text"
         placeholder="Tipo sanguíneo"

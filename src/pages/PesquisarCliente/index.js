@@ -55,7 +55,7 @@ const PesquisarCliente = () => {
       <Vertical />
       <C.Tabela>
         <Form onSubmit={handleSearch}>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="formBasicEmail" style={{ width: "auto" }}>
             <Form.Control
               type="email"
               placeholder="Digite o email do cliente"
@@ -63,12 +63,22 @@ const PesquisarCliente = () => {
               onChange={(e) => setSearchValue(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Pesquisar
-          </Button>
-          <Button variant="secondary" onClick={cancelarBusca}>
-            Cancelar
-          </Button>
+          <div style={{ display: "flex" }}>
+            <Button
+              variant="primary"
+              type="submit"
+              style={{ width: "100px", marginRight: "10px" }}
+            >
+              Pesquisar
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={cancelarBusca}
+              style={{ width: "100px" }}
+            >
+              Cancelar
+            </Button>
+          </div>
         </Form>
         <Table striped bordered hover>
           <br></br>

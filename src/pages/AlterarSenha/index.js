@@ -36,7 +36,6 @@ const AlterarSenha = () => {
       ).then((response) => {
         if (response.status === 200) {
           navigate("/signin");
-          alert("Senha alterada com sucesso!");
         } else {
           setErrorMessage("Erro ao alterar sua senha!");
         }

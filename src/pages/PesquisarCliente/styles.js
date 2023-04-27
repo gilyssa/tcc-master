@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Tabela = styled.div`
   flex-direction: row;
   align-items: center;
@@ -10,7 +9,6 @@ export const Tabela = styled.div`
   white-space: nowrap;
   width: 340px;
   max-width: 100%;
-  /* width */
   ::-webkit-scrollbar {
     width: 20px;
   }
@@ -43,7 +41,3 @@ export const Tabela = styled.div`
     flex-direction: column;
   }
 `;
-;
-
-
-

@@ -24,7 +24,6 @@ const ListarProcedimentos = () => {
     )
       .then((response) => response.json())
       .then((dados) => {
-        console.log(dados);
         setProcedimentos(dados);
       });
   };

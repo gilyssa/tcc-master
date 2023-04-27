@@ -8,7 +8,6 @@ export const Container = styled.div`
   height: 100vh;
   gap: 35px;
   background-color: #deb887;
-  
 `;
 
 export const Content = styled.div`
@@ -26,5 +25,3 @@ export const Content = styled.div`
   max-height: 600px;
   border-radius: 30px;
 `;
-
-

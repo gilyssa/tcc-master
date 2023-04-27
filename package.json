@@ -21,7 +21,6 @@
     "react-table-scrollbar": "^0.1.11",
     "router-dom": "^2.2.9",
     "sass": "^1.55.0",
-    "semantic-ui-react": "^2.1.4",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.0"
   },
