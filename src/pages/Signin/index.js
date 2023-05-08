@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import * as C from "./styles";
-import "./styles.css";
+import { LabelSignup, Strong } from "../../styles/stylesContainer";
 import Vertical from "../../components/Logotipo/vertical";
-import { Alert, AlertTitle } from "@mui/material";
+import { Alert } from "@mui/material";
+import Spinner from "../../components/Spinner/index";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -74,21 +74,17 @@ const Signin = () => {
         ]}
       />
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-      {isLoading ? (
-        <div className="spinner"></div>
-      ) : (
-        <Button Text="Entrar" onClick={handleLogin} />
-      )}
+      {isLoading ? <Spinner /> : <Button Text="Entrar" onClick={handleLogin} />}
 
-      <C.LabelSignup>
+      <LabelSignup>
         Não tem uma conta?
-        <C.Strong>
+        <Strong>
           <Link to="/signup">&nbsp;Registre-se</Link>
-        </C.Strong>
-      </C.LabelSignup>
-      <C.Strong>
+        </Strong>
+      </LabelSignup>
+      <Strong>
         <Link to="/recuperarSenha">&nbsp;Esqueceu sua senha?</Link>
-      </C.Strong>
+      </Strong>
     </>
   );
 };

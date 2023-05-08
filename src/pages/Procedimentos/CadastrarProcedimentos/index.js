@@ -4,7 +4,6 @@ import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Vertical from "../../../components/Logotipo/vertical";
 import { Alert } from "@mui/material";
-import * as C from "./styles";
 
 const CadastrarProcedimentos = () => {
   const [nome, setNome] = useState("");
@@ -58,7 +57,7 @@ const CadastrarProcedimentos = () => {
         value={nome}
         onChange={(e) => [setNome(e.target.value), setError("")]}
       />
-      <C.labelError>{error}</C.labelError>
+      <labelError>{error}</labelError>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       {isLoading ? (
         <div className="spinner"></div>

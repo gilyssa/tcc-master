@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import * as C from "./styles";
+import { LabelSignin, Strong } from "../../styles/stylesContainer";
 import Vertical from "../../components/Logotipo/vertical";
-import { Alert, AlertTitle } from "@mui/material";
-
+import { Alert } from "@mui/material";
+import Spinner from "../../components/Spinner/index";
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null); // adicionar state para mensagem de erro
@@ -75,19 +75,19 @@ const Signup = () => {
         value={senha}
         onChange={(e) => [setSenha(e.target.value), setError("")]}
       />
-      <C.labelError>{error}</C.labelError>
+      <labelError>{error}</labelError>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       {isLoading ? (
-        <div className="spinner"></div>
+        <Spinner />
       ) : (
         <Button Text="Inscrever-se" onClick={handleSubmit} />
       )}
-      <C.LabelSignin>
+      <LabelSignin>
         Já tem uma conta?
-        <C.Strong>
+        <Strong>
           <Link to="/">&nbsp;Entre</Link>
-        </C.Strong>
-      </C.LabelSignin>
+        </Strong>
+      </LabelSignin>
     </>
   );
 };

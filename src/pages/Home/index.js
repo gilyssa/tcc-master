@@ -11,22 +11,20 @@ const Home = () => {
 
   return (
     <>
-    <Vertical/>
-    <Button Text="Clientes" onClick={() => [navigate("/clientes")]}>
-        CadastrarCliente 
+      <Vertical />
+      <Button Text="Clientes" onClick={() => [navigate("/clientes")]}>
+        CadastrarCliente
       </Button>
 
-    <Button Text="Procedimentos" onClick={() => [navigate("/procedimentos")]}>
-        CadastrarCliente 
+      <Button Text="Procedimentos" onClick={() => [navigate("/procedimentos")]}>
+        CadastrarCliente
       </Button>
 
       <Button Text="Sair" onClick={() => [signout(), navigate("/")]}>
         Sair
       </Button>
-      </>
+    </>
   );
 };
-
-
 
 export default Home;

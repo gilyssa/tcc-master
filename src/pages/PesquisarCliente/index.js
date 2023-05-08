@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table, Form } from "react-bootstrap";
 import Vertical from "../../components/Logotipo/horizontal";
-
-import * as C from "./styles";
+import { Tabela } from "../../components/Tabela/index";
 
 const PesquisarCliente = () => {
   const [clientesOriginais, setClientesOriginais] = useState([]);
@@ -53,7 +52,7 @@ const PesquisarCliente = () => {
   return (
     <>
       <Vertical />
-      <C.Tabela>
+      <Tabela>
         <Form onSubmit={handleSearch}>
           <Form.Group controlId="formBasicEmail" style={{ width: "auto" }}>
             <Form.Control
@@ -109,7 +108,7 @@ const PesquisarCliente = () => {
             ))}
           </tbody>
         </Table>
-      </C.Tabela>
+      </Tabela>
     </>
   );
 };

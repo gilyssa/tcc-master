@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { Alert } from "@mui/material";
-import * as C from "./styles";
+import Spinner from "../../components/Spinner/index";
 
 const CadastroCliente = () => {
   const [nome, setNome] = useState(""); //ok
@@ -108,10 +108,10 @@ const CadastroCliente = () => {
         onChange={(e) => [setAlergias(e.target.value), setError("")]}
       />
 
-      <C.labelError>{error}</C.labelError>
+      <labelError>{error}</labelError>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       {isLoading ? (
-        <div className="spinner"></div>
+        <Spinner />
       ) : (
         <Button Text="Inscrever-se" onClick={handleSubmit} />
       )}

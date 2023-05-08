@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import Vertical from "../../../components/Logotipo/vertical";
-import * as C from "./styles";
+import { Tabela } from "../../../components/Tabela/index";
 
 const ListarProcedimentos = () => {
   const [procedimentos, setProcedimentos] = useState([]);
@@ -57,14 +57,10 @@ const ListarProcedimentos = () => {
     );
   };
 
-  const submit = () => {
-    // ...
-  };
-
   return (
     <>
       <Vertical />
-      <C.Tabela>
+      <Tabela>
         <label>Digite o nome do Procedimento</label>
         <br></br>
         <input type="text" value={nomeBusca} onChange={atualizarNomeBusca} />
@@ -87,7 +83,7 @@ const ListarProcedimentos = () => {
             ))}
           </tbody>
         </Table>
-      </C.Tabela>
+      </Tabela>
     </>
   );
 };

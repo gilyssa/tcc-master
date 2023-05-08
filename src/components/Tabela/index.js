@@ -41,8 +41,15 @@ export const Tabela = styled.div`
     display: flex;
     flex-direction: column;
   }
+  table tbody tr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .button-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
 `;
-;
-
-
-
+export default Tabela;

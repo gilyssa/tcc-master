@@ -14,11 +14,11 @@ import AlterarSenha from "../pages/AlterarSenha";
 import FichaAvaliativa from "../pages/FichaAvaliativa";
 import RecuperarSenha from "../pages/RecuperarSenha";
 
-const Private = ({ Item }) => {
-  const { signin } = useAuth();
+// const Private = ({ Item }) => {
+//   const { signin } = useAuth();
 
-  return signin > 0 ? <Item /> : <Signin />;
-};
+//   return signin > 0 ? <Item /> : <Signin />;
+// };
 
 const RoutesApp = () => {
   return (
@@ -28,16 +28,28 @@ const RoutesApp = () => {
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/home" element={<Home/>} />
-          <Route exact path="/clientes" element={<Clientes/>} /> 
-          <Route exact path="/cadastroCliente" element={< CadastroCliente />} />
-          <Route exact path="/pesquisarCliente" element={<PesquisarCliente/>} />
-          <Route exact path="/procedimentos" element={<Procedimentos/>} />
-          <Route exact path="/cadastrarProcedimentos" element={<CadastrarProcedimentos/>} />
-          <Route exact path="/listarProcedimentos" element={<ListarProcedimentos/>} />
-          <Route exact path="/recuperarSenha" element={<RecuperarSenha/>} />
-          <Route exact path="/alterarSenha" element={<AlterarSenha/>} />
-          <Route exact path="/fichaAvaliativa" element={<FichaAvaliativa/>} />
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/clientes" element={<Clientes />} />
+          <Route exact path="/cadastroCliente" element={<CadastroCliente />} />
+          <Route
+            exact
+            path="/pesquisarCliente"
+            element={<PesquisarCliente />}
+          />
+          <Route exact path="/procedimentos" element={<Procedimentos />} />
+          <Route
+            exact
+            path="/cadastrarProcedimentos"
+            element={<CadastrarProcedimentos />}
+          />
+          <Route
+            exact
+            path="/listarProcedimentos"
+            element={<ListarProcedimentos />}
+          />
+          <Route exact path="/recuperarSenha" element={<RecuperarSenha />} />
+          <Route exact path="/alterarSenha" element={<AlterarSenha />} />
+          <Route exact path="/fichaAvaliativa" element={<FichaAvaliativa />} />
           <Route path="*" element={<Signin />} />
         </Routes>
       </Fragment>

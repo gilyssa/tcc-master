@@ -25,3 +25,38 @@ export const Content = styled.div`
   max-height: 600px;
   border-radius: 30px;
 `;
+export const labelError = styled.label`
+  font-size: 14px;
+  color: red;
+`;
+export const Label = styled.label`
+  font-size: 18px;
+  font-weight: 600;
+  color: #676767;
+`;
+
+export const LabelSignin = styled.label`
+  font-size: 16px;
+  color: #676767;
+`;
+
+export const Strong = styled.strong`
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: #676767;
+  }
+`;
+
+export const LabelSignup = styled.label`
+  font-size: 16px;
+  color: #000;
+`;
+
+export const Warning = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`;

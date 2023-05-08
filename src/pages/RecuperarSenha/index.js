@@ -4,9 +4,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Vertical from "../../components/Logotipo/vertical";
 import { Alert } from "@mui/material";
-import * as C from "./styles";
-import "./styles.css";
-
+import Spinner from "../../components/Spinner/index";
 const RecuperarSenha = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -55,13 +53,9 @@ const RecuperarSenha = () => {
         onChange={(e) => [setEmail(e.target.value), setError("")]}
       />
 
-      <C.labelError>{error}</C.labelError>
+      <labelError>{error}</labelError>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-      {isLoading ? (
-        <div className="spinner"></div>
-      ) : (
-        <Button Text="Entrar" onClick={enviarEmail} />
-      )}
+      {isLoading ? <Spinner /> : <Button Text="Entrar" onClick={enviarEmail} />}
       <Button Text="Voltar" onClick={() => [navigate("/")]} />
     </>
   );
