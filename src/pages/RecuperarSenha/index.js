@@ -60,7 +60,7 @@ const RecuperarSenha = () => {
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
-        <Button Text="Entrar" onClick={enviarEmail} />
+        <Button Text="Enviar Codigo" onClick={enviarEmail} />
       )}
       <Button Text="Voltar" onClick={() => [navigate("/")]} />
     </>

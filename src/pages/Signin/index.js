@@ -83,7 +83,7 @@ const Signin = () => {
       <C.LabelSignup>
         Não tem uma conta?
         <C.Strong>
-          <Link to="/signup">&nbsp;Registre-se</Link>
+          <Link to="/signup">&nbsp;Cadastre-se</Link>
         </C.Strong>
       </C.LabelSignup>
       <C.Strong>

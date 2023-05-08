@@ -58,7 +58,7 @@ const AlterarSenha = () => {
       />
       <Input
         type="password"
-        placeholder="informe Sua Senha"
+        placeholder="Informe Sua Senha"
         value={senha}
         onChange={(e) => [setSenha(e.target.value), setError("")]}
       />

@@ -63,7 +63,7 @@ const CadastrarProcedimentos = () => {
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
-        <Button Text="Inscrever-se" onClick={handleSubmit} />
+        <Button Text="Criar" onClick={handleSubmit} />
       )}
     </>
   );
