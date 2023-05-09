@@ -1,51 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { Button, Table } from "react-bootstrap";
-import Vertical from "../../components/Logotipo/horizontal";
-import { useNavigate } from "react-router-dom";
-import * as C from "./styles";
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Vertical from '../../components/Logotipo/horizontal';
+import * as C from './styles';
+
 const PesquisarClientes = () => {
   const [clientes, setClientes] = useState([]);
-  const [nomeBusca, setNomeBusca] = useState("");
+  const [nomeBusca, setNomeBusca] = useState('');
+  const [isLoading, setIsLoading] = useState(true); // Loading state
   const navigate = useNavigate();
+
   useEffect(() => {
     listarClientes();
   }, []);
 
   const listarClientes = () => {
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        token: JSON.parse(localStorage.getItem("signin")).signin.token,
-        usuario_id: JSON.parse(localStorage.getItem("signin")).signin.usuario,
+        'Content-Type': 'application/json',
+        token: JSON.parse(localStorage.getItem('signin')).signin.token,
+        usuario_id: JSON.parse(localStorage.getItem('signin')).signin.usuario,
       },
     };
+
+    setIsLoading(true); // Start loading
     fetch(
-      "https://bff-beauty-with-aesthetic.onrender.com/api/clientes?",
-      options
+      'https://bff-beauty-with-aesthetic.onrender.com/api/clientes?',
+      options,
     )
       .then((response) => response.json())
       .then((dados) => {
         setClientes(dados);
-      });
-  };
-
-  const carregarCliente = (id) => {
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        token: JSON.parse(localStorage.getItem("signin")).signin.token,
-        usuario_id: JSON.parse(localStorage.getItem("signin")).signin.usuario,
-      },
-    };
-    fetch(
-      "https://bff-beauty-with-aesthetic.onrender.com/api/clientes?" + id,
-      options
-    )
-      .then((response) => response.json())
-      .then((cliente) => {
-        // implemente o código para carregar o cliente
+        setIsLoading(false); // Stop loading
       });
   };
 
@@ -55,58 +42,55 @@ const PesquisarClientes = () => {
 
   const filtrarClientes = () => {
     return clientes.filter((cliente) =>
-      cliente.nome.toLowerCase().includes(nomeBusca.toLowerCase())
+      cliente.nome.toLowerCase().includes(nomeBusca.toLowerCase()),
     );
   };
 
   return (
     <>
       <Vertical />
-      <C.Tabela style={{ overflowX: "hidden" }}>
-        <label style={{ fontSize: "20px" }}>Digite o nome do Cliente</label>
-        <br />
-        <input type="text" value={nomeBusca} onChange={atualizarNomeBusca} />
-        <br />
-        <br />
-        <Table striped bordered hover>
-          <tbody>
-            <tr style={{ backgroundColor: "black" }}>
-              <td style={{ fontSize: "22px", color: "white" }}>Clientes</td>
-            </tr>
-            {filtrarClientes().map((cliente) => (
-              <tr>
-                <td
-                  className="ordenacao"
-                  title={cliente.nome}
-                  style={{ fontSize: "20px" }}
+      <label style={{ fontSize: '20px' }}>Pesquisar Cliente</label>
+      <input
+        type="text"
+        value={nomeBusca}
+        onChange={atualizarNomeBusca}
+        style={{ width: '300px', borderRadius: '5px' }}
+      />
+      <C.Content>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {isLoading ? (
+            <div>Buscando...</div> // Display loading message or spinner when isLoading is true
+          ) : (
+            filtrarClientes().map((cliente) => (
+              <div
+                key={cliente.id}
+                style={{
+                  margin: '5px 0',
+                }}
+              >
+                <Button
+                  style={{
+                    width: '260px',
+                  }}
+                  variant="secondary"
+                  onClick={() => navigate('/fichaAvaliativa')}
                 >
                   {cliente.nome}
-                  {nomeBusca && (
-                    <div
-                      style={{
-                        margin: "5 5 5 5",
-                      }}
-                    >
-                      <div style={{ marginBottom: "5px" }}>
-                        <Button variant="secondary">Atualizar</Button>
-                      </div>
-
-                      <div>
-                        <Button
-                          variant="secondary"
-                          onClick={() => navigate("/fichaAvaliativa")}
-                        >
-                          Ficha Avaliativa
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </C.Tabela>
+                </Button>
+              </div>
+            ))
+          )}
+        </div>
+      </C.Content>
+      <Button
+        style={{
+          width: '260px',
+          alignItems: 'left',
+        }}
+        onClick={() => navigate('/clientes')}
+      >
+        Voltar
+      </Button>
     </>
   );
 };

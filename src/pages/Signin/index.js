@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import { LabelSignup, Strong } from "../../styles/stylesContainer";
-import Vertical from "../../components/Logotipo/vertical";
-import { Alert, Modal, Box, Typography } from "@mui/material";
-import Spinner from "../../components/Spinner/index";
+import { Alert, Box, Modal, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Vertical from '../../components/Logotipo/vertical';
+import Spinner from '../../components/Spinner/index';
+import { LabelSignup, Strong } from '../../styles/stylesContainer';
 
 const Signin = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -27,25 +27,25 @@ const Signin = () => {
     try {
       setIsLoading(true);
       const options = {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(objetos),
       };
       const response = await fetch(
-        "https://bff-beauty-with-aesthetic.onrender.com/api/usuarios/login",
-        options
+        'https://bff-beauty-with-aesthetic.onrender.com/api/usuarios/login',
+        options,
       );
       if (response.status === 200) {
         const signin = await response.json();
-        localStorage.setItem("signin", JSON.stringify({ signin }));
+        localStorage.setItem('signin', JSON.stringify({ signin }));
         setIsSuccessModalOpen(true);
       } else {
-        setErrorMessage("Erro ao fazer login.");
+        setErrorMessage('Erro ao fazer login.');
       }
     } catch (error) {
-      setErrorMessage("Ocorreu um erro inesperado.");
+      setErrorMessage('Ocorreu um erro inesperado.');
     } finally {
       setIsLoading(false);
     }
@@ -53,7 +53,7 @@ const Signin = () => {
 
   function handleCloseSuccessModal() {
     setIsSuccessModalOpen(false);
-    navigate("/home");
+    navigate('/home');
   }
 
   return (
@@ -66,7 +66,7 @@ const Signin = () => {
         value={email}
         onChange={(e) => [
           setEmail(e.target.value),
-          setError(""),
+          setError(''),
           setErrorMessage(null),
         ]}
       />
@@ -76,7 +76,7 @@ const Signin = () => {
         value={senha}
         onChange={(e) => [
           setSenha(e.target.value),
-          setError(""),
+          setError(''),
           setErrorMessage(null),
         ]}
       />
@@ -101,14 +101,15 @@ const Signin = () => {
       >
         <Box
           sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
             width: 230,
-            bgcolor: "background.paper",
+            bgcolor: 'background.paper',
             boxShadow: 24,
             p: 4,
+            borderRadius: 4,
           }}
         >
           <Typography id="modal-title" variant="h6" component="h2" gutterBottom>

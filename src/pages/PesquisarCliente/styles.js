@@ -1,14 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Tabela = styled.div`
-  flex-direction: row;
+export const Content = styled.div`
+  width: 300px;
+  height: 300px;
   align-items: center;
-  padding: 30px;
   overflow-y: scroll;
   overflow-x: hidden;
   white-space: nowrap;
-  width: 340px;
-  max-width: 100%;
   ::-webkit-scrollbar {
     width: 20px;
   }
@@ -28,16 +26,5 @@ export const Tabela = styled.div`
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #deb887;
-  }
-
-  td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .ordenacao {
-    display: flex;
-    flex-direction: column;
   }
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -13,7 +13,6 @@ export const Content = styled.div`
   gap: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   width: 100%;
   height: 100%;
