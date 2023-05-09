@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { LabelSignup, Strong } from "../../styles/stylesContainer";
 import Vertical from "../../components/Logotipo/vertical";
-import { Alert } from "@mui/material";
+import { Alert, Modal, Box, Typography } from "@mui/material";
 import Spinner from "../../components/Spinner/index";
 
 const Signin = () => {
@@ -14,12 +14,14 @@ const Signin = () => {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null); // adicionar state para mensagem de erro
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const objetos = {
     email: email,
     senha: senha,
   };
+
   async function handleLogin(e) {
     e.preventDefault();
     try {
@@ -38,7 +40,7 @@ const Signin = () => {
       if (response.status === 200) {
         const signin = await response.json();
         localStorage.setItem("signin", JSON.stringify({ signin }));
-        navigate("/home");
+        setIsSuccessModalOpen(true);
       } else {
         setErrorMessage("Erro ao fazer login.");
       }
@@ -47,6 +49,11 @@ const Signin = () => {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  function handleCloseSuccessModal() {
+    setIsSuccessModalOpen(false);
+    navigate("/home");
   }
 
   return (
@@ -85,6 +92,32 @@ const Signin = () => {
       <Strong>
         <Link to="/recuperarSenha">&nbsp;Esqueceu sua senha?</Link>
       </Strong>
+
+      <Modal
+        open={isSuccessModalOpen}
+        onClose={handleCloseSuccessModal}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 230,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography id="modal-title" variant="h6" component="h2" gutterBottom>
+            Login efetuado!
+          </Typography>
+          <Typography id="modal-description" sx={{ mt: 2 }} />
+          <Button Text="OK!" onClick={handleCloseSuccessModal} />
+        </Box>
+      </Modal>
     </>
   );
 };

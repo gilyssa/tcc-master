@@ -1,116 +1,114 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Form } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import Vertical from "../../components/Logotipo/horizontal";
-import { Tabela } from "../../components/Tabela/index";
-
-const PesquisarCliente = () => {
-  const [clientesOriginais, setClientesOriginais] = useState([]);
+import { useNavigate } from "react-router-dom";
+import * as C from "./styles";
+const PesquisarClientes = () => {
   const [clientes, setClientes] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
-
+  const [nomeBusca, setNomeBusca] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
-    buscarClientes();
+    listarClientes();
   }, []);
 
-  const buscarClientes = () => {
+  const listarClientes = () => {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         token: JSON.parse(localStorage.getItem("signin")).signin.token,
+        usuario_id: JSON.parse(localStorage.getItem("signin")).signin.usuario,
       },
     };
-
     fetch(
       "https://bff-beauty-with-aesthetic.onrender.com/api/clientes?",
       options
     )
       .then((response) => response.json())
       .then((dados) => {
-        setClientesOriginais(dados);
         setClientes(dados);
       });
   };
 
-  const deletarClientes = (id) => {
-    // implemente a lógica para deletar o cliente com o ID fornecido
+  const carregarCliente = (id) => {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: JSON.parse(localStorage.getItem("signin")).signin.token,
+        usuario_id: JSON.parse(localStorage.getItem("signin")).signin.usuario,
+      },
+    };
+    fetch(
+      "https://bff-beauty-with-aesthetic.onrender.com/api/clientes?" + id,
+      options
+    )
+      .then((response) => response.json())
+      .then((cliente) => {
+        // implemente o código para carregar o cliente
+      });
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const filteredClientes = clientesOriginais.filter(
-      (cliente) => cliente.email === searchValue
+  const atualizarNomeBusca = (e) => {
+    setNomeBusca(e.target.value);
+  };
+
+  const filtrarClientes = () => {
+    return clientes.filter((cliente) =>
+      cliente.nome.toLowerCase().includes(nomeBusca.toLowerCase())
     );
-    setClientes(filteredClientes);
-  };
-
-  const cancelarBusca = () => {
-    setSearchValue("");
-    setClientes(clientesOriginais);
   };
 
   return (
     <>
       <Vertical />
-      <Tabela>
-        <Form onSubmit={handleSearch}>
-          <Form.Group controlId="formBasicEmail" style={{ width: "auto" }}>
-            <Form.Control
-              type="email"
-              placeholder="Digite o email do cliente"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-          </Form.Group>
-          <div style={{ display: "flex" }}>
-            <Button
-              variant="primary"
-              type="submit"
-              style={{ width: "100px", marginRight: "10px" }}
-            >
-              Pesquisar
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={cancelarBusca}
-              style={{ width: "100px" }}
-            >
-              Cancelar
-            </Button>
-          </div>
-        </Form>
+      <C.Tabela style={{ overflowX: "hidden" }}>
+        <label style={{ fontSize: "20px" }}>Digite o nome do Cliente</label>
+        <br />
+        <input type="text" value={nomeBusca} onChange={atualizarNomeBusca} />
+        <br />
+        <br />
         <Table striped bordered hover>
-          <br></br>
           <tbody>
-            <tr>
-              <td>
-                <strong>Clientes Adicionados</strong>
-              </td>
+            <tr style={{ backgroundColor: "black" }}>
+              <td style={{ fontSize: "22px", color: "white" }}>Clientes</td>
             </tr>
-            {clientes.map((cliente) => (
+            {filtrarClientes().map((cliente) => (
               <tr>
-                <td class="ordenacao" title={cliente.email}>
-                  {cliente.email}
-                  <Button
-                    variant="warning"
-                    onClick={() => deletarClientes(cliente.id)}
-                  >
-                    Alterar
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => deletarClientes(cliente.id)}
-                  >
-                    Ficha Avaliativa
-                  </Button>
+                <td
+                  className="ordenacao"
+                  title={cliente.nome}
+                  style={{ fontSize: "20px" }}
+                >
+                  {cliente.nome}
+                  {nomeBusca && (
+                    <div
+                      style={{
+                        margin: "5 5 5 5",
+                      }}
+                    >
+                      <div style={{ marginBottom: "5px" }}>
+                        <Button variant="secondary">Atualizar</Button>
+                      </div>
+
+                      <div>
+                        <Button
+                          variant="secondary"
+                          onClick={() => navigate("/fichaAvaliativa")}
+                        >
+                          Ficha Avaliativa
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
-      </Tabela>
+      </C.Tabela>
     </>
   );
 };
 
-export default PesquisarCliente;
+export default PesquisarClientes;

@@ -6,9 +6,10 @@ import { LabelSignin, Strong } from "../../styles/stylesContainer";
 import Vertical from "../../components/Logotipo/vertical";
 import { Alert } from "@mui/material";
 import Spinner from "../../components/Spinner/index";
+
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null); // adicionar state para mensagem de erro
+  const [errorMessage, setErrorMessage] = useState(null);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -25,7 +26,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      await fetch(
+      const response = await fetch(
         "https://bff-beauty-with-aesthetic.onrender.com/api/usuarios",
         {
           method: "POST",
@@ -34,25 +35,21 @@ const Signup = () => {
           },
           body: JSON.stringify(objetos),
         }
-      )
-        .then((response) => {
-          if (response.status === 200) {
-            localStorage.setItem("cadastro", JSON.stringify({ objetos }));
-            return response.json();
-          } else {
-            setErrorMessage("Erro ao cadastrar.");
-          }
-        })
-        .catch((error) => {
-          setErrorMessage("Não foi Possivel realizar o cadastro");
-        });
-      navigate("/");
+      );
+
+      if (response.status === 200) {
+        localStorage.setItem("cadastro", JSON.stringify({ objetos }));
+        navigate("/");
+      } else {
+        setErrorMessage("Erro ao cadastrar.");
+      }
     } catch (error) {
-      setErrorMessage("Ocorreu um erro inesperado.");
+      setErrorMessage("Não foi Possivel realizar o cadastro");
     } finally {
       setIsLoading(false);
     }
   }
+
   return (
     <>
       <Vertical />

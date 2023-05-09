@@ -61,23 +61,29 @@ const ListarProcedimentos = () => {
     <>
       <Vertical />
       <Tabela>
-        <label>Digite o nome do Procedimento</label>
+        <label style={{ fontSize: "19px" }}>
+          Digite o nome do Procedimento
+        </label>
         <br></br>
         <input type="text" value={nomeBusca} onChange={atualizarNomeBusca} />
         <br></br>
         <br></br>
         <Table striped bordered hover class="table-dark">
           <tbody>
-            <tr>
-              <td>Procedimentos</td>
+            <tr style={{ backgroundColor: "black" }}>
+              <td style={{ fontSize: "20px", color: "white" }}>
+                Procedimentos
+              </td>
             </tr>
             {filtrarProcedimentos().map((procedimento) => (
               <tr key={procedimento.id}>
-                <td class="ordenacao" title={procedimento.nome}>
+                <td
+                  class="ordenacao"
+                  title={procedimento.nome}
+                  style={{ fontSize: "20px" }}
+                >
                   {procedimento.nome}
-                  <Button onClick={() => carregarProcedimento(procedimento.id)}>
-                    Atualizar
-                  </Button>
+                  {nomeBusca && <Button variant="secondary">Atualizar</Button>}
                 </td>
               </tr>
             ))}

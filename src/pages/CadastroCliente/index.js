@@ -4,18 +4,22 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { Alert } from "@mui/material";
 import Spinner from "../../components/Spinner/index";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const CadastroCliente = () => {
-  const [nome, setNome] = useState(""); //ok
-  const [email, setEmail] = useState(""); //ok
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null); // adicionar state para mensagem de erro
-  const [telefone, setTelefone] = useState(""); //ok
-  const [cpf, setCpf] = useState(""); //ok
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [telefone, setTelefone] = useState("");
+  const [cpf, setCpf] = useState("");
   const [error, setError] = useState("");
-  const [data_nascimento, setData_nascimento] = useState(""); //ok
-  const [tipo_sanguineo, setTipo_sanguineo] = useState(""); //ok
-  const [alergias, setAlergias] = useState(""); //ok
+  const [data_nascimento, setData_nascimento] = useState("");
+  const [tipo_sanguineo, setTipo_sanguineo] = useState("");
+  const [alergias, setAlergias] = useState("");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // Adiciona o estado para o modal
   const navigate = useNavigate();
 
   const objetos = {
@@ -50,7 +54,7 @@ const CadastroCliente = () => {
       ).then((response) => {
         if (response.status === 200) {
           localStorage.setItem("cadastro", JSON.stringify({ objetos }));
-          alert("Cliente cadastrado com sucesso!");
+          setIsSuccessModalOpen(true); // Abre o modal em caso de sucesso
           return response.json(), navigate("/home");
         } else {
           alert("Cliente nao Cadastrado!");
@@ -61,6 +65,10 @@ const CadastroCliente = () => {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  function handleCloseSuccessModal() {
+    setIsSuccessModalOpen(false); // Fecha o modal em caso de sucesso
   }
   return (
     <>
@@ -107,14 +115,38 @@ const CadastroCliente = () => {
         value={alergias}
         onChange={(e) => [setAlergias(e.target.value), setError("")]}
       />
-
-      <labelError>{error}</labelError>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       {isLoading ? (
         <Spinner />
       ) : (
         <Button Text="Inscrever-se" onClick={handleSubmit} />
       )}
+
+      <Modal
+        open={isSuccessModalOpen}
+        onClose={handleCloseSuccessModal}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 230,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography id="modal-title" variant="h6" component="h2" gutterBottom>
+            Login efetuado!
+          </Typography>
+          <Typography id="modal-description" sx={{ mt: 2 }} />
+          <Button Text="OK!" onClick={handleCloseSuccessModal} />
+        </Box>
+      </Modal>
     </>
   );
 };

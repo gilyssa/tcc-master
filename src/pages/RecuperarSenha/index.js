@@ -55,7 +55,15 @@ const RecuperarSenha = () => {
 
       <labelError>{error}</labelError>
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-      {isLoading ? <Spinner /> : <Button Text="Entrar" onClick={enviarEmail} />}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Button
+          Text="Enviar
+      "
+          onClick={enviarEmail}
+        />
+      )}
       <Button Text="Voltar" onClick={() => [navigate("/")]} />
     </>
   );

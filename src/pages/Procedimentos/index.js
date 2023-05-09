@@ -5,29 +5,29 @@ import Vertical from "../../components/Logotipo/vertical";
 
 import useAuth from "../../hooks/useAuth";
 
-
 const Procedimentos = () => {
   const { signout } = useAuth();
   const navigate = useNavigate();
 
   return (
-        <>
-            <Vertical/>
-            <Button Text="Adicionar Procedimento" onClick={() => [navigate("/cadastrarProcedimentos")]}>
-         
-            </Button>
+    <>
+      <Vertical />
+      <Button
+        Text="Adicionar Procedimento"
+        onClick={() => [navigate("/cadastrarProcedimentos")]}
+      ></Button>
 
-            <Button Text="Listar Procedimentos" onClick={() => [navigate("/listarProcedimentos")]}>
-         
-            </Button>
+      <Button
+        Text="Listar Procedimentos"
+        onClick={() => [navigate("/listarProcedimentos")]}
+      ></Button>
 
-            <Button Text="Voltar" onClick={() => [signout(), navigate("/")]}>
-        
-            </Button>
-        </>
+      <Button
+        Text="Voltar"
+        onClick={() => [signout(), navigate("/home")]}
+      ></Button>
+    </>
   );
 };
-
-
 
 export default Procedimentos;
